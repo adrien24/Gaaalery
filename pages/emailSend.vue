@@ -1,36 +1,8 @@
 <template>
 <div>
-   <form action="https://postmail.invotes.com/send"
-    method="post" id="email_form">
-
-    <input type="text" name="subject" placeholder="Subject" />
-    <textarea name="text" placeholder="Message"></textarea>
-    <input type="hidden" name="access_token" value="x709qooffiqw12dhye9rp5ta" />
-      <!-- return urls can be fully qualified -OR-
-         start with / for root relative -OR-
-         start with . for url relative --> 
-    <input type="hidden" name="success_url" value=".?message=Email+Successfully+Sent%21&isError=0" />
-    <input type="hidden" name="error_url" value=".?message=Email+could+not+be+sent.&isError=1" />
-   
-
-    <!-- set the reply-to address -->
-    <!-- <input type="text" name="reply_to"
-                placeholder="Your Email" /> -->
-
-    <!-- to append extra fields, use the extra_ prefix.
-        Entries will be appended to your message body. -->
-    <!-- <input type="text" name="extra_phone_number"
-                placeholder="Phone Number" /> -->
-
-    <!-- to split your message into 160 chars
-         for an sms gateway -->
-    <!-- <input type="hidden"
-                name="sms_format" value="true" /> -->
-   
-    <input id="submit_form" type="submit" value="Send" />
-    <!-- not required, but we'd appreciate it if you'd link to us somewhere on your site -->
-    <p>Powered by <a href="https://postmail.invotes.com" target="_blank">PostMail</a></p>
-</form>
+    <h1>
+        oui
+    </h1>
 </div>
 </template>
 
@@ -40,14 +12,17 @@
 export default {
     name: 'Email',
     mounted(){
-    var submitButton = document.getElementById("submit_form");
-    var form = document.getElementById("email_form");
-    form.addEventListener("submit", function (e) {
-        setTimeout(function() {
-            submitButton.value = "Sending...";
-            submitButton.disabled = true;
-        }, 1);
-    });
+       Email.send({
+            Host : "smtp.elasticemail.com",
+            Username : "adrien.bouteiller06@gmail.com",
+            Password : "D7055C39A5E4E8473A3C313AB5CE7133001E",
+            To : 'lr1b3e48p2@maildax.me',
+            From : "smtp.elasticemail.com",
+            Subject : "This is the subject",
+            Body : "And this is the body"
+        }).then(
+        message => alert(message)
+        );
     }
 
 }
